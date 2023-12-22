@@ -240,6 +240,8 @@ function newGame() {
     } else if (titlesJSON === null) {
         // Lazily get titles for each game
         const makeGame = async () => {
+            gameButtons.hidden = true;
+
             progressBarText.innerHTML = `Getting titles for new game: 0/${numTitlesPerGame}`;
             progressBarProgress.style.width = "0%";
             progressBarDiv.hidden = false;
@@ -305,15 +307,18 @@ function newGame() {
                 }
             }
 
-            saveTitlesButton.hidden = false;
+            gameButtons.hidden = false;
             getNextTitleButton.hidden = false;
             resetButton.hidden = false;
+            saveTitlesButton.hidden = false;
             gameTitles.hidden = false;
         }
 
         makeGame();
     } else {
         // Titles already pre-fetched
+        gameButtons.hidden = true;
+
         let keys = titlesKeysQueue.slice(0, numTitlesPerGame);
         let shuffledIdx = shuffle([...Array(numTitlesPerGame).keys()]);
 
@@ -355,9 +360,11 @@ function newGame() {
                 cell.innerHTML = `<font color="red"><s>${cell.innerHTML}</s></font>`;
             }
         }
-        
+
+        gameButtons.hidden = false;
         getNextTitleButton.hidden = false;
         resetButton.hidden = false;
+        saveTitlesButton.hidden = false;
         gameTitles.hidden = false;
     }
 }
