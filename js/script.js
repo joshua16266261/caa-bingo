@@ -1,6 +1,8 @@
 /////////////////////// Source selection radio ///////////////////////
 const fromJSONRadio = document.getElementById("fromJSONRadio"),
-    fromUsernamesRadio = document.getElementById("fromUsernamesRadio");
+    fromUsernamesRadio = document.getElementById("fromUsernamesRadio"),
+    fromJSONLabel = document.getElementById("fromJSONLabel"),
+    fromUsernamesLabel = document.getElementById("fromUsernamesLabel");
 
 fromJSONRadio.onclick = function() {fromJSONOnClick()};
 fromUsernamesRadio.onclick = function() {fromUsernamesOnClick()};
@@ -47,7 +49,8 @@ getTitlesButton.onclick = function() {getTitlesOnClick()};
 saveTitlesButton.onclick = function() {saveTitlesButtonOnClick()};
 
 /////////////////////// Game area ///////////////////////
-const titleInfo = document.getElementById("titleInfo"),
+const gameDiv = document.getElementById("gameDiv"),
+    titleInfo = document.getElementById("titleInfo"),
     gameButtons = document.getElementById("gameButtons"),
     gameTitles = document.getElementById("gameTitles");
 
@@ -81,6 +84,9 @@ function fromJSONOnClick() {
     statusFieldset.hidden = true;
     usernamesInputButtonDiv.hidden = true;
     progressBarDiv.hidden = true;
+
+    fromJSONLabel.classList.add("selected");
+    fromUsernamesLabel.classList.remove("selected");
 }
 
 function fromUsernamesOnClick() {
@@ -93,6 +99,9 @@ function fromUsernamesOnClick() {
     if (progressBarProgress.style.width && progressBarProgress.style.width !== "0%") {
         progressBarDiv.hidden = false;
     }
+
+    fromJSONLabel.classList.remove("selected");
+    fromUsernamesLabel.classList.add("selected");
 }
 
 function importOnClick() {
@@ -103,13 +112,16 @@ function importOnClick() {
         titleInfo.innerHTML = `Number of titles remaining: ${titlesKeysQueue.length}`;
     }
 
+    if (!titlesFileInput.files.length) {
+        alert("ERROR: No file chosen");
+        return;
+    }
+
     const reader = new FileReader();
     reader.onload = onReaderLoad;
     reader.readAsText(titlesFileInput.files[0]);
 
-    gameButtons.hidden = false;
-    newGameButton.hidden = false;
-    titleInfo.hidden = false;
+    gameDiv.hidden = false;
 }
 
 function getTitlesOnClick() {
@@ -117,6 +129,11 @@ function getTitlesOnClick() {
         let usernames = usernamesInput.value;
         usernames = usernames.split("\n");
         usernames = usernames.filter(Boolean);
+
+        if (!usernames.length) {
+            alert("Please type at least one username.");
+            return;
+        }
 
         const statuses = checkboxes.filter((box) => box.checked).map((box) => box.name);
         if (!statuses.length) {
@@ -167,15 +184,18 @@ function getTitlesOnClick() {
             await getAnimeIDsForUsername(usernames[i], i);
         }
 
+        if (animeIDsSet.size < numTitlesPerGame) {
+            alert(`Found ${animeIDsSet.size} titles.\nNot enough for a full game.`);
+            return;
+        }
+
         titlesJSON = null;
         titlesKeys = Array.from(animeIDsSet);
         titlesKeysQueue = shuffle(titlesKeys);
         titleInfo.innerHTML = `Number of titles remaining: ${titlesKeysQueue.length}`;
 
         saveTitlesButton.hidden = false;
-        gameButtons.hidden = false;
-        newGameButton.hidden = false;
-        titleInfo.hidden = false;
+        gameDiv.hidden = false;
     }
 
     getAnimeIDs();

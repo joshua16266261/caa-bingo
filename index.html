@@ -6,19 +6,20 @@
     </head> 
    <body>
         <header>
-            <h1>CAA Bingo</h1>
+            <h1>Cal Animage Alpha Bingo</h1>
         </header>
         <main>
         <div>
+            <h2>Setup</h2>
             <fieldset>
                 <legend>Please select a source:</legend>
                 <div>
                     <input type="radio" id="fromUsernamesRadio" name="source" checked/>
-                    <label for="fromUsernamesRadio">MyAnimeList usernames</label>
+                    <label for="fromUsernamesRadio" id="fromUsernamesLabel" class="selected">MyAnimeList usernames</label>
                 </div>
                 <div>
                     <input type="radio" id="fromJSONRadio" name="source"/>
-                    <label for="fromJSONRadio">Import from .json</label>
+                    <label for="fromJSONRadio" id="fromJSONLabel">Import from .json</label>
                 </div>
             </fieldset>
 
@@ -79,11 +80,11 @@
             </div>
         </div>
 
-        <div>
+        <div id="gameDiv" hidden>
             <h2>Game Area</h2>
-            <p id="titleInfo" hidden></p>
-            <div id="gameButtons" hidden>
-                <button id="newGameButton" hidden>New Game</button>
+            <p id="titleInfo"></p>
+            <div id="gameButtons">
+                <button id="newGameButton">New Game</button>
                 <button id="getNextTitleButton" hidden>Get Next Title</button>
                 <button id="resetButton" hidden>Reset</button>
             </div>
