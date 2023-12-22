@@ -1,0 +1,36 @@
+h2 {
+    text-align: center;
+}
+
+.progress {
+    width: 100%;
+    background-color: grey;
+}
+
+.bar {
+    width: 0%;
+    height: 30px;
+    background-color: green;
+}
+
+td,
+th {
+    width: 50%;
+    text-align: left;
+    padding: 5px;
+}
+
+th {
+    font-size: x-large;
+}
+
+table {
+    width: 100%;
+    background-color: rgb(227, 211, 206);
+}
+
+body {
+    background-color: rgb(255, 237, 231);
+    color: rgb(11, 11, 49);
+    font-family: verdana;
+}

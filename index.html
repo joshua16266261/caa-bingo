@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>CAA Bingo</title>
+        <link rel="stylesheet" href="css/style.css">
+    </head> 
+   <body>
+        <header>
+            <h1>CAA Bingo</h1>
+        </header>
+        <main>
+        <div>
+            <fieldset>
+                <legend>Please select a source:</legend>
+                <div>
+                    <input type="radio" id="fromUsernamesRadio" name="source" checked/>
+                    <label for="fromUsernamesRadio">MyAnimeList usernames</label>
+                </div>
+                <div>
+                    <input type="radio" id="fromJSONRadio" name="source"/>
+                    <label for="fromJSONRadio">Import from .json</label>
+                </div>
+            </fieldset>
+
+            <div id="input">
+                <input type="file" id="titlesFileInput" name="titles" accept=".json" hidden/>
+
+                <div id="usernamesInputDiv">
+                    <fieldset id="statusFieldset">
+                        <legend>Include:</legend>
+                        <div>
+                            <input type="checkbox" id="completedBox" name="completed" checked />
+                            <label for="completedBox">Completed</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="watchingBox" name="watching" checked />
+                            <label for="watchingBox">Watching</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="onHoldBox" name="on_hold" />
+                            <label for="onHoldBox">On hold</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="droppedBox" name="dropped" />
+                            <label for="droppedBox">Dropped</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="planToWatchBox" name="plan_to_watch" />
+                            <label for="planToWatchBox">Plan to watch</label>
+                        </div>
+                    </fieldset>
+                    <label for="usernamesInput" id="usernamesInputLabel">
+                        <p>Type each MyAnimeList username on a separate line:</p>
+                        <!-- <p>
+                            Alternatively, download and run <a href="files/get_titles.py">this Python script</a> to generate a .json file to import.
+                            By default, the generated file will be called "titles.json".
+                            Example usage: <code>python get_titles.py username1 username2 username3</code>
+                        </p>
+                        <p>Python download page: <a href="https://www.python.org/downloads/" target="_blank" rel="noopener noreferrer">https://www.python.org/downloads/</a></p> -->
+                    </label>
+                    <textarea rows="5" cols="50" id="usernamesInput"></textarea>
+                </div>
+
+                <div id="submit">
+                    <button id="importButton" hidden>Import</button>
+
+                    <div id="usernamesInputButtonDiv">
+                        <button id="getTitlesButton">Get Titles</button>
+                        <button id="saveTitlesButton" hidden>Export as .json</button>
+                    </div>
+                </div>
+
+                <div id="progressBarDiv" hidden>
+                    <p id="progressBarText"></p>
+                    <div id="progressBarFull" class="progress">
+                        <div id="progressBarProgress" class="bar"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <h2>Game Area</h2>
+            <p id="titleInfo" hidden></p>
+            <div id="gameButtons" hidden>
+                <button id="newGameButton" hidden>New Game</button>
+                <button id="getNextTitleButton" hidden>Get Next Title</button>
+                <button id="resetButton" hidden>Reset</button>
+            </div>
+            <div style="margin-top: 20px;" id="gameTitles" hidden></div>
+        </div>
+        </main>
+    </body>
+
+    <script src="js/script.js"></script>
+</html>
