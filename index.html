@@ -8,104 +8,109 @@
         <header>
             <h1>Cal Animage Alpha Bingo</h1>
         </header>
+
         <main>
-        <div>
-            <h2>Setup</h2>
-            <fieldset>
-                <legend>Please select a source:</legend>
-                <div>
-                    <input type="radio" id="fromUsernamesRadio" name="source" checked/>
-                    <label for="fromUsernamesRadio" id="fromUsernamesLabel" class="selected">MyAnimeList usernames</label>
-                </div>
-                <div>
-                    <input type="radio" id="fromJSONRadio" name="source"/>
-                    <label for="fromJSONRadio" id="fromJSONLabel">Import from .json</label>
-                </div>
-            </fieldset>
-
-            <div id="input">
-                <input type="file" id="titlesFileInput" name="titles" accept=".json" hidden/>
-
-                <div id="usernamesInputDiv">
-                    <fieldset id="statusFieldset">
-                        <legend>Include:</legend>
-                        <div>
-                            <input type="checkbox" id="completedBox" name="completed" checked />
-                            <label for="completedBox">Completed</label>
-                        </div>
-                        <div>
-                            <input type="checkbox" id="watchingBox" name="watching" checked />
-                            <label for="watchingBox">Watching</label>
-                        </div>
-                        <div>
-                            <input type="checkbox" id="onHoldBox" name="on_hold" />
-                            <label for="onHoldBox">On hold</label>
-                        </div>
-                        <div>
-                            <input type="checkbox" id="droppedBox" name="dropped" />
-                            <label for="droppedBox">Dropped</label>
-                        </div>
-                        <div>
-                            <input type="checkbox" id="planToWatchBox" name="plan_to_watch" />
-                            <label for="planToWatchBox">Plan to watch</label>
-                        </div>
-                    </fieldset>
-                    <label for="usernamesInput" id="usernamesInputLabel">
-                        <p>Type each MyAnimeList username on a separate line:</p>
-                    </label>
-                    <textarea rows="5" cols="50" id="usernamesInput"></textarea>
-                </div>
-
-                <div id="submit">
-                    <button id="importButton" hidden>Import</button>
-
-                    <div id="usernamesInputButtonDiv">
-                        <button id="getTitlesButton">Get Titles</button>
-                        <button id="saveTitlesButton" hidden>Export as .json</button>
+            <div>
+                <h2>Setup</h2>
+                <fieldset>
+                    <legend>Please select a source:</legend>
+                    <div>
+                        <input type="radio" id="fromUsernamesRadio" name="source" checked/>
+                        <label for="fromUsernamesRadio" id="fromUsernamesLabel" class="selected">MyAnimeList usernames</label>
                     </div>
-                </div>
+                    <div>
+                        <input type="radio" id="fromJSONRadio" name="source"/>
+                        <label for="fromJSONRadio" id="fromJSONLabel">Import from .json</label>
+                    </div>
+                </fieldset>
 
-                <div id="progressBarDiv" hidden>
-                    <p id="progressBarText"></p>
-                    <div id="progressBarFull" class="progress">
-                        <div id="progressBarProgress" class="bar"></div>
+                <div id="input">
+                    <input type="file" id="titlesFileInput" name="titles" accept=".json" hidden/>
+
+                    <div id="usernamesInputDiv">
+                        <fieldset id="statusFieldset">
+                            <legend>Include:</legend>
+                            <div>
+                                <input type="checkbox" id="completedBox" name="completed" checked />
+                                <label for="completedBox">Completed</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="watchingBox" name="watching" checked />
+                                <label for="watchingBox">Watching</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="onHoldBox" name="on_hold" />
+                                <label for="onHoldBox">On hold</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="droppedBox" name="dropped" />
+                                <label for="droppedBox">Dropped</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="planToWatchBox" name="plan_to_watch" />
+                                <label for="planToWatchBox">Plan to watch</label>
+                            </div>
+                        </fieldset>
+                        <label for="usernamesInput" id="usernamesInputLabel">
+                            <p>Type each MyAnimeList username on a separate line:</p>
+                        </label>
+                        <textarea rows="5" cols="50" id="usernamesInput"></textarea>
+                    </div>
+
+                    <div id="submit">
+                        <button id="importButton" hidden>Import</button>
+
+                        <div id="usernamesInputButtonDiv">
+                            <button id="getTitlesButton">Get Titles</button>
+                            <button id="saveTitlesButton" hidden>Export as .json</button>
+                        </div>
+                    </div>
+
+                    <div id="progressBarDiv" hidden>
+                        <p id="progressBarText"></p>
+                        <div id="progressBarFull" class="progress">
+                            <div id="progressBarProgress" class="bar"></div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div>
-            <h2>Rules</h2>
-            <ol>
-                <li>
-                    At the beginning of each game, 24 anime titles will be displayed in the <a href="#gameDiv">Game Area</a> below.
-                    Please put them on your board in whatever order you like.<br>
-                    It doesn't actually matter what you write, as long as it's clear which anime you're referring to.
-                </li>
-                <li>
-                    One at a time, an anime will be randomly chosen from the list.
-                    Find it on your board and mark it.
-                </li>
-                <li>
-                    Once you get 5 in a row <b style="color:red">THREE times</b>, yell "BINGO!".
-                </li>
-                <li>
-                    Have fun and enjoy!
-                </li>
-            </ol>
-        </div>
-
-        <div id="gameDiv" hidden>
-            <h2>Game Area</h2>
-            <p id="titleInfo"></p>
-            <div id="gameButtons">
-                <button id="newGameButton">New Game</button>
-                <button id="getNextTitleButton" hidden>Get Next Title</button>
-                <button id="resetButton" hidden>Reset</button>
+            <div>
+                <h2>Rules</h2>
+                <ol>
+                    <li>
+                        At the beginning of each game, 24 anime titles will be displayed in the <a href="#gameDiv">Game Area</a> below.
+                        Please put them on your board in whatever order you like.<br>
+                        It doesn't actually matter what you write, as long as it's clear which anime you're referring to.
+                    </li>
+                    <li>
+                        One at a time, an anime will be randomly chosen from the list.
+                        Find it on your board and mark it.
+                    </li>
+                    <li>
+                        Once you get 5 in a row <b style="color:red">THREE times</b>, yell "BINGO!".
+                    </li>
+                    <li>
+                        Have fun and enjoy!
+                    </li>
+                </ol>
             </div>
-            <div style="margin-top: 20px;" id="gameTitles" hidden></div>
-        </div>
+
+            <div id="gameDiv" hidden>
+                <h2>Game Area</h2>
+                <p id="titleInfo"></p>
+                <div id="gameButtons">
+                    <button id="newGameButton">New Game</button>
+                    <button id="getNextTitleButton" hidden>Get Next Title</button>
+                    <button id="resetButton" hidden>Reset</button>
+                </div>
+                <div style="margin-top: 20px;" id="gameTitles" hidden></div>
+            </div>
         </main>
+        
+        <footer>
+            <a href="https://github.com/joshua16266261/caa-bingo" target=”_blank”>Source GitHub repo</a>
+        </footer>
     </body>
 
     <script src="js/script.js"></script>
