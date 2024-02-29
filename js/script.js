@@ -377,7 +377,8 @@ function newGame() {
 
             window.open(`https://myanimelist.net/anime/${key}`, '_blank');
             for (cell of table.rows[idx + 1].cells) {
-                cell.style.color = "red";
+                // cell.style.color = "red";
+                cell.innerHTML = `<font color="red"><s>${cell.innerHTML}</s></font>`;
             }
         }
 
